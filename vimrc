@@ -16,7 +16,7 @@
 
 set nocompatible           " Kill Vi compatibility
 set history=700            " How many lines of history Vim must remember
-set autoread               " Auto read when a file is changed from the outside
+set autoread               " Reload file when altered externally
 
 
 
@@ -28,7 +28,7 @@ set autoread               " Auto read when a file is changed from the outside
 let mapleader = ","
 let g:mapleader = ","
 
-"Initialize Vundle
+" Initialize Vundle
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#rc()
@@ -39,22 +39,15 @@ Plugin 'surround.vim'
 Plugin 'itchyny/lightline.vim'
 Plugin 'mattn/emmet-vim'
 Plugin 'Shougo/neocomplete.vim'
+Plugin 'jiangmiao/auto-pairs'
 
 filetype plugin indent on  "filetype detection[ON] plugin [ON] indent[ON]
-
-
-" Enable NERDTree on startup
-"autocmd vimenter * NERDTree
-"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 " Do not automatically add comment leaders
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " Enable omnicompletion
 set ofu=syntaxcomplete#Complete
-
-" Set location of YCM python file
-let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
 
 " Only enable emmet in web files
 let g:user_emmet_install_global = 0
@@ -98,11 +91,12 @@ set hid                    " buffer becomes hidden when abandoned
 set lazyredraw             " do not redraw while executing macros
 set magic                  " regular expressions
 
-" Return to last edit possition when opening files
+" Return to last edit position when opening files
 autocmd BufReadPost *
             \ if line("'\"") > 0 && line("'\"") <= line("$") |
             \   exe "normal! g'\"" |
             \ endif
+
 "Remember info about open buffers on close
 set viminfo^=%
 
