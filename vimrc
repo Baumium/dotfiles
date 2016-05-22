@@ -40,6 +40,8 @@ Plugin 'itchyny/lightline.vim'
 Plugin 'mattn/emmet-vim'
 Plugin 'Shougo/neocomplete.vim'
 Plugin 'jiangmiao/auto-pairs'
+Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-fugitive'
 
 filetype plugin indent on  "filetype detection[ON] plugin [ON] indent[ON]
 
@@ -55,6 +57,27 @@ autocmd FileType html,css EmmetInstall
 
 " Configure neocomplete
 let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_smart_case = 1
+"let g:neocomplete#enable_auto_select = 1
+
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+if !exists('g:neocomplete#sources#omni#input_patterns')
+    let g:neocomplete#sources#omni#input_patterns = {}
+endif
+if !exists('g:neocomplete#force_omni_input_patterns')
+    let g:neocomplete#force_omni_input_patterns = {}
+endif
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" :
+            \ <SID>check_back_space() ? "\<TAB>" :
+            \ neocomplete#start_manual_complete()
+function! s:check_back_space() "{{{
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~ '\s'
+endfunction""}}}
 
 
 
