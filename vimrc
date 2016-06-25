@@ -38,10 +38,11 @@ Plugin 'ctrlp.vim'
 Plugin 'surround.vim'
 Plugin 'itchyny/lightline.vim'
 Plugin 'mattn/emmet-vim'
-Plugin 'Shougo/neocomplete.vim'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-fugitive'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'rust-lang/rust.vim'
 
 filetype plugin indent on  "filetype detection[ON] plugin [ON] indent[ON]
 
@@ -55,10 +56,9 @@ set ofu=syntaxcomplete#Complete
 let g:user_emmet_install_global = 0
 autocmd FileType html,css EmmetInstall
 
-" Configure neocomplete
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_smart_case = 1
-"let g:neocomplete#enable_auto_select = 1
+" Configure YCM
+let g:ycm_global_ycm_extra_conf = '/usr/src/rust/src'
+let g:ycm_rust_src_path = '~/rustc-1.9.0/src'
 
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
