@@ -57,8 +57,8 @@ let g:user_emmet_install_global = 0
 autocmd FileType html,css EmmetInstall
 
 " Configure YCM
-let g:ycm_global_ycm_extra_conf = '/usr/src/rust/src'
-let g:ycm_rust_src_path = '~/rustc-1.9.0/src'
+let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
+let g:ycm_rust_src_path = '/usr/src/rust/src'
 
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
@@ -157,6 +157,9 @@ nmap <leader>a :wa <cr>
 " Disable highlight when <leader><cr> is pressed
 nmap <silent> <leader><cr> :noh<cr>
 
+" Copy to clipboard from visual
+vnoremap <leader>c :w !xclip -sel clip<enter> <enter>
+
 " Treat long lines as break lines
 map j gj
 map k gk
@@ -172,3 +175,6 @@ inoremap jj <Esc>
 
 " Map ; to :
 nnoremap ; :
+
+" Apply YCM FixIt
+map <F9> :YcmCompleter FixIt<CR>
